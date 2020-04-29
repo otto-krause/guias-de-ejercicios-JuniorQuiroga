@@ -6,7 +6,8 @@ namespace E5
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Supermercado super = new Supermercado();
+            Console.WriteLine("las ganancias totales del dia son: $"+Supermercado.Ganancias());
         }
     }
 }
