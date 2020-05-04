@@ -4,7 +4,16 @@ namespace E3
 {
     public class Album
     {
-        void AddFigurita(string nombre,string posicion,string pais,int numero){
+        static List<Figurita> figuritas= new List<Figurita>();
+
+        public Album(){
+            Figurita C0 = new Figurita("Pepito","delantero","mozambique",4);
+            Album.figuritas.Add(C0);
+            Figurita C1 = new Figurita("Rojuelo","mediocampista","Mexico",2);
+            Album.figuritas.Add(C1);
+        }
+
+        public bool AddFigurita(string nombre,string posicion,string pais,int numero){
             int contador=0;
             string info;
             string[] split_info;
@@ -22,26 +31,42 @@ namespace E3
             if (contador==0){
             Figurita C2 = new Figurita(nombre,posicion,pais,numero);
             Album.figuritas.Add(C2);
-            Console.WriteLine("carta agregada con exito");
             }
-            else
-            Console.WriteLine("Ya tiene esta carta");
+            return contador==0;
 
-        }
-        
-        static List<Figurita> figuritas= new List<Figurita>();
-
-        public Album(string nombre,string posicion,string pais,int numero){
-            Figurita C0 = new Figurita("Pepito","delantero","mozambique",4);
-            Album.figuritas.Add(C0);
-            Figurita C1 = new Figurita("Rojuelo","Mediocampista","Mexico",2);
-            Album.figuritas.Add(C1);
-
-            AddFigurita(nombre,posicion,pais,numero);
         }
 
         public static List<Figurita> GetList(){
             return figuritas;
+        }
+
+        public int Contar(string parametro){
+            int cont=0;
+            string info;
+            string[] split_info;
+
+            foreach (var figurita in figuritas)
+            {
+                info = figurita.GetInfo();
+                split_info = info.Split("/");
+
+                if(parametro == split_info[1])
+                cont++;
+            }
+            return cont;
+        }
+
+        public int CuantosDelanteros(){
+            return Contar("delantero");
+        }
+
+        public int CuantosMediocampistas(){
+            return Contar("mediocampista");
+        }
+
+        public bool EstaCompleto(){
+            int jugadores = figuritas.Count;
+            return jugadores == 352;
         }
     }
 }
