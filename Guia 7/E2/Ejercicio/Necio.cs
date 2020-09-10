@@ -8,7 +8,7 @@ namespace Ejercicio
 
         }
 
-        public override int SeAsusta(Niño niño){   
+        public override int SeAsusta(Asustador niño){   
             return 0;
         }
     }

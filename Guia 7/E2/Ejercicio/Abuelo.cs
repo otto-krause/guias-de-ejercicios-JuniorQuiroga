@@ -9,7 +9,7 @@ namespace Ejercicio
         public Abuelo():base(){
         }
 
-        public override int SeAsusta(Niño niño){   
+        public override int SeAsusta(Asustador niño){   
             int niñosAnteriores= caramelosDeNiños.Where(c => c>15).Count(); 
             //revisa si algun niño a pasado antes con mas de 15 caramelos
             if(niñosAnteriores >0)

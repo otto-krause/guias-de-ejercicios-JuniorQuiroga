@@ -13,6 +13,6 @@ namespace Ejercicio
             this.tolerancia=0;
         }
 
-        public abstract int SeAsusta(Niño niño);
+        public abstract int SeAsusta(Asustador niño);
     }
 }
