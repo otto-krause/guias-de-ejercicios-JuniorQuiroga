@@ -1,11 +1,8 @@
 namespace Ejercicio
 {
-    public abstract class Traje
+    public abstract class Traje:Elemento
     {
-        protected int puntos;
-        public int Puntos{get =>puntos;}
-
-        public Traje(){
+        public Traje():base(){
         }
     }
 }

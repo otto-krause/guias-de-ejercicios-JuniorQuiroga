@@ -1,11 +1,8 @@
 namespace Ejercicio
 {
-    public class Maquillaje
+    public class Maquillaje:Elemento
     {
-        private int puntos;
-        public int Puntos{get =>puntos;}
-
-        public Maquillaje(){
+        public Maquillaje():base(){
             this.puntos = 3;
         }
     }
