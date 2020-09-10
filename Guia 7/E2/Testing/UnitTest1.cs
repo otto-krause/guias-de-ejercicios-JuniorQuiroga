@@ -1,6 +1,7 @@
 using Ejercicio;
-using System.Collections.Generic;
+using System;
 using System.Linq;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace Testing
@@ -19,6 +20,12 @@ namespace Testing
         Legion legion;
         Legion legionDeLegiones;
         
+        List<Asustador> niños;
+
+        Maquillaje maqui;
+        Traje tierno;
+        Traje terror; 
+
         [SetUp]
         public void Setup()
         {
@@ -26,13 +33,21 @@ namespace Testing
             necio = new Necio();
             comun = new Comun();
 
-            mary = new Niño(new Maquillaje(),new Traje_Tierno(),16);
-            jony = new Niño(new Maquillaje(),new Traje_Terrorifico(),0);
-            romo = new Niño(new Maquillaje(),new Traje_Terrorifico(),5);
-            flor = new Niño(new Maquillaje(),new Traje_Terrorifico(),10);
+            maqui = new Maquillaje();
+            tierno = new Traje_Tierno();
+            terror = new Traje_Terrorifico();
 
-            legion = new Legion(new List<Asustador>(){mary,jony,romo});
+            mary = new Niño(maqui,tierno,16);
+            jony = new Niño(maqui,terror,0);
+            romo = new Niño(maqui,terror,5);
+            flor = new Niño(maqui,terror,10);
+
+            niños = new List<Asustador>(){mary,jony,romo};
+
+            legion = new Legion(niños);
             legionDeLegiones = new Legion(new List<Asustador>(){legion,flor});
+    
+            niños.Add(flor);
         }
 
     #region A
@@ -178,6 +193,38 @@ namespace Testing
         {
             legionDeLegiones.Asustar(necio);
             Assert.AreEqual(31,legionDeLegiones.Caramelos);
+        }
+
+    #endregion
+
+    #region C
+        //1
+        [Test]
+        public void TestElNiñoConMasCaramelosEsMary()
+        {
+            Assert.AreEqual(mary,niños.OrderByDescending(n=>n.Caramelos).First());
+        }
+
+        [Test]
+        public void TestElSegundoNiñoConMasCaramelosEsFlor()
+        {
+            Assert.AreEqual(flor,niños.OrderByDescending(n=>n.Caramelos).Take(2).Last());
+        }
+
+        [Test]
+        public void TestElTercerNiñoConMasCaramelosEsRomo()
+        {
+            Assert.AreEqual(romo,niños.OrderByDescending(n=>n.Caramelos).Take(3).Last());
+        }
+
+        //2
+        [Test]
+        public void TestLosNIñosCuentanConMaquillajeYUnTrajeTiernoOTerrorifico()
+        {
+            List<Elemento> lista = new List<Elemento>();
+            niños.Select(n => n.getMaqui).Distinct().ToList().ForEach(m => lista.Add(m));
+            niños.Select(n => n.getTraje).Distinct().ToList().ForEach(t => lista.Add(t));
+            Assert.AreEqual(new List<Elemento>(){maqui,tierno,terror},lista);
         }
     #endregion
     }
