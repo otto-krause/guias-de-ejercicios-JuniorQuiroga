@@ -40,7 +40,7 @@ namespace Testing
             mary = new Niño(maqui,tierno,16);
             jony = new Niño(maqui,terror,0);
             romo = new Niño(maqui,terror,5);
-            flor = new Niño(maqui,terror,10);
+            flor = new Niño(maqui,terror,100);
 
             niños = new List<Asustador>(){mary,jony,romo};
 
@@ -163,7 +163,7 @@ namespace Testing
         [Test]
         public void TestLegionDeLegionesTiene31Caramelos()
         {
-            Assert.AreEqual(31,legionDeLegiones.Caramelos);
+            Assert.AreEqual(121,legionDeLegiones.Caramelos);
         }
 
         [Test]
@@ -177,7 +177,7 @@ namespace Testing
         {
             legionDeLegiones.Asustar(abuelo);
             legionDeLegiones.Asustar(abuelo);
-            Assert.AreEqual(33,legionDeLegiones.Caramelos);
+            Assert.AreEqual(123,legionDeLegiones.Caramelos);
         }
 
         [Test]
@@ -185,14 +185,14 @@ namespace Testing
         {
             legionDeLegiones.Asustar(comun);
             legionDeLegiones.Asustar(comun);
-            Assert.AreEqual(36,legionDeLegiones.Caramelos);
+            Assert.AreEqual(126,legionDeLegiones.Caramelos);
         }
 
         [Test]
         public void TestLegionDeLegionesIntentaAsustarAUnNecioYNoConsiguieronNada()
         {
             legionDeLegiones.Asustar(necio);
-            Assert.AreEqual(31,legionDeLegiones.Caramelos);
+            Assert.AreEqual(121,legionDeLegiones.Caramelos);
         }
 
     #endregion
@@ -200,15 +200,15 @@ namespace Testing
     #region C
         //1
         [Test]
-        public void TestElNiñoConMasCaramelosEsMary()
+        public void TestElNiñoConMasCaramelosEsFlor()
         {
-            Assert.AreEqual(mary,niños.OrderByDescending(n=>n.Caramelos).First());
+            Assert.AreEqual(flor,niños.OrderByDescending(n=>n.Caramelos).First());
         }
 
         [Test]
         public void TestElSegundoNiñoConMasCaramelosEsFlor()
         {
-            Assert.AreEqual(flor,niños.OrderByDescending(n=>n.Caramelos).Take(2).Last());
+            Assert.AreEqual(mary,niños.OrderByDescending(n=>n.Caramelos).Take(2).Last());
         }
 
         [Test]
@@ -219,14 +219,14 @@ namespace Testing
 
         //2
         [Test]
-        public void TestLosNIñosConMasDe10CaramellosLevanMaquillajeYUnTrajeTierno()
+        public void TestLosNIñosConMasDe10CaramellosLevanMaquillajeYUnTrajeTiernoOTerorifico()
         {
             List<Elemento> elementos = new List<Elemento>();
             niños = niños.OrderByDescending(n => n.Caramelos).ToList();
             niños.TakeWhile(n => n.Caramelos>10).Select(n => n.getMaqui).Distinct().ToList().ForEach(m => elementos.Add(m));
             niños.TakeWhile(n => n.Caramelos>10).Select(n => n.getTraje).Distinct().ToList().ForEach(t => elementos.Add(t));
             
-            Assert.AreEqual(new List<Elemento>(){maqui,tierno},elementos);
+            Assert.AreEqual(new List<Elemento>(){maqui,terror,tierno},elementos);
         }
     #endregion
 
@@ -247,5 +247,29 @@ namespace Testing
         }
     #endregion
 
+    #region E
+        [Test]
+        public void TestFlorSeCome12CaramelosYSeEmpacha()
+        {
+            flor.Comer(12);
+            Assert.AreEqual("empachado",flor.Estado);
+        }
+
+        [Test]
+        public void TestFlorSeCome12CaramelosLuegoOtros15YSeQuedaEnCama()
+        {
+            flor.Comer(12);
+            flor.Comer(15);
+            Assert.AreEqual("en cama",flor.Estado);
+        }
+        
+        [Test]
+        public void TestFlorSeCome12CaramelosLuegoOtros15YSeQuedaEnCamaYNoPuedeAsustar()
+        {
+            flor.Comer(12);
+            flor.Comer(15);
+            Assert.Throws<System.Exception>(() => flor.Asustar(abuelo));
+        }
+    #endregion
     }
 }
