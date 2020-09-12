@@ -219,12 +219,14 @@ namespace Testing
 
         //2
         [Test]
-        public void TestLosNIñosCuentanConMaquillajeYUnTrajeTiernoOTerrorifico()
+        public void TestLosNIñosConMasDe10CaramellosLevanMaquillajeYUnTrajeTierno()
         {
-            List<Elemento> lista = new List<Elemento>();
-            niños.Select(n => n.getMaqui).Distinct().ToList().ForEach(m => lista.Add(m));
-            niños.Select(n => n.getTraje).Distinct().ToList().ForEach(t => lista.Add(t));
-            Assert.AreEqual(new List<Elemento>(){maqui,tierno,terror},lista);
+            List<Elemento> elementos = new List<Elemento>();
+            niños = niños.OrderByDescending(n => n.Caramelos).ToList();
+            niños.TakeWhile(n => n.Caramelos>10).Select(n => n.getMaqui).Distinct().ToList().ForEach(m => elementos.Add(m));
+            niños.TakeWhile(n => n.Caramelos>10).Select(n => n.getTraje).Distinct().ToList().ForEach(t => elementos.Add(t));
+            
+            Assert.AreEqual(new List<Elemento>(){maqui,tierno},elementos);
         }
     #endregion
     }
