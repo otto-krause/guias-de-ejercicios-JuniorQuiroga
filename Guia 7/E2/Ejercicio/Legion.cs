@@ -29,5 +29,7 @@ namespace Ejercicio
                 lider.Caramelos=recibidos;
                 caramelos += recibidos;
         }
+
+        public override void Comer(int cantidad){}
     }
 }

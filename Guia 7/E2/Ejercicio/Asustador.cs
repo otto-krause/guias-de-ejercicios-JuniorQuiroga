@@ -20,5 +20,7 @@ namespace Ejercicio
         }
 
         public abstract void Asustar(Adulto adulto);
+
+        public abstract void Comer(int cantidad);        
     }
 }

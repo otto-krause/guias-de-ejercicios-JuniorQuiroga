@@ -16,5 +16,12 @@ namespace Ejercicio
         public override void Asustar(Adulto adulto){
             caramelos += adulto.SeAsusta(this);
         }
+
+        public override void Comer(int cantidad){
+            if(caramelos - cantidad > 0)
+                caramelos -= cantidad;
+            else
+                caramelos =0;
+        }
     }
 }
