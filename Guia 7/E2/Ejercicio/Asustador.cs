@@ -19,8 +19,6 @@ namespace Ejercicio
         public Asustador(){
         }
 
-        public abstract void Asustar(Adulto adulto);
-
-        public abstract void Comer(int cantidad);        
+        public abstract void Asustar(Adulto adulto);  
     }
 }
