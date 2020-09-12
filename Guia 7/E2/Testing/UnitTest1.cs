@@ -229,5 +229,23 @@ namespace Testing
             Assert.AreEqual(new List<Elemento>(){maqui,tierno},elementos);
         }
     #endregion
+
+    #region D
+        //1
+        [Test]
+        public void TestMaryCome3CaramelosYseQuedaCon13()
+        {
+            mary.Comer(3);
+            Assert.AreEqual(13,mary.Caramelos);
+        }
+
+        [Test]
+        public void TestRomoQuiereComer6CaramalosPeroTiene5AsiQueQuedaCon0()
+        {
+            romo.Comer(6);
+            Assert.AreEqual(0,romo.Caramelos);
+        }
+    #endregion
+
     }
 }
