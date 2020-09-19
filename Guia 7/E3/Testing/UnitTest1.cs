@@ -28,6 +28,11 @@ namespace Testing
         Ciudadano c4;
         Ciudadano c5;
         Ciudadano c6;
+        Ciudadano c7;
+        Ciudadano c8;
+        Ciudadano c9;
+        Ciudadano c10;
+        Ciudadano c11;
         
 
         [SetUp]
@@ -46,9 +51,14 @@ namespace Testing
             et = new Extraterrestre(2);
 
             c1 = new Ciudadano(10000000);
-            c2 = new Ciudadano(1000000);
-            c3 = new Ciudadano(5000);
+            c7 = new Ciudadano(6000000);
             c4 = new Ciudadano(2000000);
+            c2 = new Ciudadano(1000000);
+            c9 = new Ciudadano(522000);
+            c8 = new Ciudadano(500000);
+            c10 = new Ciudadano(52000);
+            c11 = new Ciudadano(51000);
+            c3 = new Ciudadano(5000);
             c5 = new Ciudadano(5000);
             c6 = new Ciudadano(5000);
 
@@ -102,6 +112,35 @@ namespace Testing
         {
             pandilla.ForEach(v => v.HacerMaldades(ciudadanos));
             Assert.IsTrue(psico.Asesinatos==5 && marron.Dinero==2000000 && blanco.Dinero == 10000000);
+        }
+
+    #endregion
+
+    #region 2
+        //1
+        [Test]
+        public void TestNoGoticaEsLujosa()
+        {
+            Assert.IsFalse(ciudadanos.Where(c=>c.Clase=="rico").Count()>ciudadanos.Count()/2);
+        }
+        
+        //2
+        [Test]
+        public void TestTop10()
+        {
+            List<Ciudadano> poblacion = new List<Ciudadano>(){c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11};
+            List<Ciudadano> top = poblacion.OrderByDescending(c=>c.Dinero).Take(10).ToList();
+            Assert.AreEqual(new List<Ciudadano>{c1,c7,c4,c2,c9,c8,c10,c11,c3,c5},top);
+        }
+
+        //3
+        [Test]
+        public void TestVillanosProfugosLuegoDeQueBatmanAtacaAUnPsicopata()
+        {
+            List<Villano> villanos = new List<Villano>(){psico,blanco,marron,robin,et};
+            batman.CombatirCrimen(psico);
+            villanos.Remove(psico);
+            Assert.IsTrue(villanos.All(v=>v.Estado=="profugo"));
         }
 
     #endregion
