@@ -18,5 +18,13 @@ namespace Ejercicio
             this.ira *=2;
             this.fuerza=CalcularFuerza();
         }
+
+        public virtual void ManejarIra(){
+            if(ira-5 > 0) 
+                this.ira -=5;
+            else 
+                this.ira =0;
+        }
+
     }
 }

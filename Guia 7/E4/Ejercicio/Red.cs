@@ -14,9 +14,9 @@ namespace Ejercicio
         }
 
         public override void Enojarse(){
-            cantEnojo++;
             ira *=2;
             fuerza=CalcularFuerza();
+            cantEnojo++;
         }
     }
 }

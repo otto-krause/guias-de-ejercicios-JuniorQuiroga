@@ -3,7 +3,6 @@ namespace Ejercicio
     public class Chuck:Pajaro
     {
         private int velocidad;
-        public int Velocidad{get => velocidad;}
 
         public Chuck(int velocidad):base(){
             this.velocidad = velocidad;
@@ -16,7 +15,12 @@ namespace Ejercicio
 
         public override void Enojarse(){
             this.velocidad *=2;
+            this.ira = velocidad;
             this.fuerza=CalcularFuerza();
+        }
+
+        public override void ManejarIra(){
+            this.ira=velocidad;
         }
     }
 }
