@@ -15,7 +15,7 @@ namespace Testing
         Terence terence;
         Matilda matilda;
 
-        List<Pajaro> pajaros;
+        Isla isla;
 
         [SetUp]
         public void Setup()
@@ -27,7 +27,7 @@ namespace Testing
             terence = new Terence(3,2);
             matilda = new Matilda(4,new List<Huevo>(){new Huevo(2),new Huevo(3),new Huevo(1),new Huevo(4)});
 
-            pajaros = new List<Pajaro>(){comun,red,bomb,chuck,terence,matilda};
+            isla = new Isla(new List<Pajaro>(){comun,red,bomb,chuck,terence,matilda});
         }
 
     #region 1
@@ -47,18 +47,58 @@ namespace Testing
         [Test]
         public void TestChuckEsElPajaroMasFuertes()
         {
-            List<Pajaro> fortachones = pajaros.Where(p=> p.Fuerza > 50).ToList();
+            List<Pajaro> fortachones = isla.Pajaros.Where(p=> p.Fuerza > 50).ToList();
             Assert.AreEqual(new List<Pajaro>(){chuck},fortachones);
         }
 
         [Test]
         public void TestLaFuerzaDeLaIslaEs150()
         {
-            Assert.AreEqual(150,pajaros.Where(p=> p.Fuerza > 50).ToList().Sum(p=>p.Fuerza));
+            Assert.AreEqual(150,isla.Pajaros.Where(p=> p.Fuerza > 50).ToList().Sum(p=>p.Fuerza));
         }
 
     #endregion
         
+    #region 2
+        [Test]
+        public void TestTodaLaIslaTomaUnaSecionDeManejoDeIraPeroChuckNoLoLogra()
+        {
+            List<int> iras = new List<int>();
+            isla.ManejoDeIra();
+            isla.Pajaros.ForEach(p=>iras.Add(p.Ira));
+            Assert.IsTrue(new List<int>(){0,5,0,4,0,0}.SequenceEqual(iras)&& chuck.Ira==4);
+        }
+
+        [Test]
+        public void Test256CerdosLLeganALaIslaYLosPajarosSeEnojan2Veces()
+        {
+            List<int> iras = new List<int>();
+            isla.Invacion(256);
+            isla.Pajaros.ForEach(p=>iras.Add(p.Ira));
+            Assert.IsTrue(new List<int>(){8,40,12,16,12,4}.SequenceEqual(iras) && matilda.Fuerza == 22);
+        }
+
+        [Test]
+        public void TestFiestaSorpresaARedYAMatildaYSeEnojan()
+        {
+            isla.Fiesta(new List<Pajaro>(){red,matilda});
+            Assert.IsTrue(red.Ira==20 && matilda.Fuerza==20);
+        }
+
+        [Test]
+        public void TestCuandoNoHayANadieAQuienHomenajearTiraError()
+        {
+            Assert.Throws<System.Exception>(() => isla.Fiesta(new List<Pajaro>(){}));
+        }
+        
+        [Test]
+        public void TestSerieDeEventosDesafortunados()
+        {
+            isla.EventosDesafortunados(new List<Pajaro>(){red,comun},492);
+
+            Assert.IsTrue(red.Ira==310&& comun.Ira==54&& bomb.Ira==43&& chuck.Ira==64&& terence.Ira==43 && matilda.Fuerza==26);
+        }
+    #endregion 
 
     #region standard pajaros
     //red
@@ -69,10 +109,11 @@ namespace Testing
         }
         
         [Test]
-        public void TestRedSeEnojaYSuFuerzaEs200()
+        public void TestRedSeEnoja2VecesYSuFuerzaEs400()
         {
             red.Enojarse();
-            Assert.AreEqual(200,red.Fuerza);
+            red.Enojarse();
+            Assert.AreEqual(400,red.Fuerza);
         }
     //bomb
         [Test]
@@ -110,10 +151,10 @@ namespace Testing
         }
 
         [Test]
-        public void TestTerenceSeEnojaVecesYSuFuerzaEs14()
+        public void TestTerenceSeEnojaVecesYSuFuerzaEs12()
         {
             terence.Enojarse();
-            Assert.AreEqual(14,terence.Fuerza);
+            Assert.AreEqual(12,terence.Fuerza);
         }
     //matilda
         [Test]
