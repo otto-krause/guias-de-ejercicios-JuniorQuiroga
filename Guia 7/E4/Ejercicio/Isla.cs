@@ -43,5 +43,9 @@ namespace Ejercicio
                     pajaro.Derribar(islaCerditos.Obstaculos.First(o=> o.Estado == "en pie"));
             }
         }
+
+        public void HuevoSeAbre(Huevo huevo){
+            pajaros.Add(huevo.Abrirse()); 
+        }
     }
 }

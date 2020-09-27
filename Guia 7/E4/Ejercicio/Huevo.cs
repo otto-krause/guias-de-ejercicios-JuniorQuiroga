@@ -12,5 +12,9 @@ namespace Ejercicio
             this.peso = peso;
             this.fuerza = peso;
         }
+
+        public Pajaro Abrirse(){
+            return new Comun(1);
+        }
     }
 }

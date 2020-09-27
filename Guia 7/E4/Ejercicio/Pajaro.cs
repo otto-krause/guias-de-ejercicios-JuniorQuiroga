@@ -30,8 +30,6 @@ namespace Ejercicio
             if(obstaculo.Resistencia <= fuerza){
                 obstaculo.Estado="derribado";
             }
-            //else
-                //throw new Exception(this +" Su fuerza no es suficiente");
         }
     }
 }
