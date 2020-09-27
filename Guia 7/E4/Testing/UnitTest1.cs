@@ -143,6 +143,17 @@ namespace Testing
 
     #endregion
 
+    #region 4
+
+        [Test]
+        public void TestSeAbreUnHUevoYSeSumaUnPajaroALaIsla()
+        {
+            isla.HuevoSeAbre(new Huevo(3));
+            Assert.AreEqual(7,isla.Pajaros.Count());
+        }
+        
+    #endregion
+
     #region standard pajaros
     //red
         [Test]
