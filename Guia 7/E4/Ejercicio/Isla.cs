@@ -35,5 +35,13 @@ namespace Ejercicio
             ManejoDeIra();
             Fiesta(homenajeados);
         }
+
+        public void Atacar(Isla_Cerdo islaCerditos){
+            foreach (var pajaro in pajaros)
+            {
+                if(!islaCerditos.Obstaculos.All(o=>o.Estado == "derribado"))
+                    pajaro.Derribar(islaCerditos.Obstaculos.First(o=> o.Estado == "en pie"));
+            }
+        }
     }
 }

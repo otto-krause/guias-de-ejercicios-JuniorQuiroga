@@ -26,5 +26,12 @@ namespace Ejercicio
                 this.ira =0;
         }
 
+        public void Derribar(Obstaculo obstaculo){
+            if(obstaculo.Resistencia <= fuerza){
+                obstaculo.Estado="derribado";
+            }
+            //else
+                //throw new Exception(this +" Su fuerza no es suficiente");
+        }
     }
 }
