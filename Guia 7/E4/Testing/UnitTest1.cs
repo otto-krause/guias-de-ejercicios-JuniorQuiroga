@@ -15,7 +15,15 @@ namespace Testing
         Terence terence;
         Matilda matilda;
 
+        Obstaculo madera;
+        Obstaculo vidrio;
+        Obstaculo piedra;
+        Obstaculo obrero;
+        Obstaculo armadoEscudo;
+        Obstaculo armadoCasco;
+        
         Isla isla;
+        Isla_Cerdo islaCerditos;
 
         [SetUp]
         public void Setup()
@@ -27,7 +35,15 @@ namespace Testing
             terence = new Terence(3,2);
             matilda = new Matilda(4,new List<Huevo>(){new Huevo(2),new Huevo(3),new Huevo(1),new Huevo(4)});
 
+            madera = new Madera(3);
+            vidrio = new Vidrio(1);
+            piedra = new Piedra(2);
+            obrero = new Obrero();
+            armadoEscudo = new Armado(new Escudo(2));
+            armadoCasco = new Armado(new Casco(4));
+
             isla = new Isla(new List<Pajaro>(){comun,red,bomb,chuck,terence,matilda});
+            islaCerditos = new Isla_Cerdo(new List<Obstaculo>(){madera,vidrio,piedra,obrero,armadoCasco,armadoEscudo});
         }
 
     #region 1
@@ -99,6 +115,33 @@ namespace Testing
             Assert.IsTrue(red.Ira==310&& comun.Ira==54&& bomb.Ira==43&& chuck.Ira==64&& terence.Ira==43 && matilda.Fuerza==26);
         }
     #endregion 
+
+    #region 3
+        [Test]
+        public void TestChuckRompeUnaParedDeVidrioDe1DeAncho()
+        {
+            chuck.Derribar(vidrio);
+            Assert.AreEqual("derribado",vidrio.Estado);
+        }
+        
+        [Test]
+        public void TestLaIslaAtacaALaIslaDeCerditosPeroNoDerribanTodo()
+        {
+            isla.Atacar(islaCerditos);
+            Assert.IsFalse(islaCerditos.Obstaculos.All(o=>o.Estado == "derribado"));
+        }
+        
+        [Test]
+        public void TestLosPajarosSeEnojan5VecesYLaIslaAtacaALaIslaDeCerditosYRecuperanTodosLosHuevos()
+        {
+            for (int i = 0; i < 5; i++)
+                isla.Pajaros.ForEach(p=>p.Enojarse());
+            
+            isla.Atacar(islaCerditos);
+            Assert.IsTrue(islaCerditos.Obstaculos.All(o=>o.Estado == "derribado"));
+        }
+
+    #endregion
 
     #region standard pajaros
     //red
