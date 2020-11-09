@@ -18,14 +18,14 @@ namespace Ejercicio
         }
 
         public void Luchar(Villano villano){
-            if(quirk.Poder > villano.suQuirk.Poder)
+            if(quirk.Poder() > villano.suQuirk.Poder())
                 victorias++;
             else
                 derrotas++;
         }
 
         public void Luchar(Pandilla pandilla){
-            if(quirk.Poder > pandilla.Villanos.Sum(v => v.suQuirk.Poder))
+            if(quirk.Poder() > pandilla.Villanos.Sum(v => v.suQuirk.Poder()))
                 victorias+= pandilla.Villanos.Count();
             else
                 papeles = "acta de defuncion";

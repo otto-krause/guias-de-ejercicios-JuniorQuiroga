@@ -17,7 +17,7 @@ namespace Ejercicio
             this.leGustaLaPizzaConPiña = leGustaLaPizzaConPiña;
             
             this.esMuyMalo = robo&&noTrabajo&&leGustaLaPizzaConPiña;
-            this.algunaVezFueBueno = !quirk.EsPeligroso&&!noTrabajo;
+            this.algunaVezFueBueno = !quirk.Peligroso()&&!noTrabajo;
         }
 
     }
