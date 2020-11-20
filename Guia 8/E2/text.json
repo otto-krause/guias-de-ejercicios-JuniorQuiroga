@@ -1,0 +1,116 @@
+{
+    "locales":[
+        {
+            "coordenadas":{
+                "latitud": -34.6280805,
+                "longitud": -58.368849
+            },
+            "nombre": "Sucursal Parque Lezama",
+            "direccion": "Av. Martin Garcia 270",
+            "empleados":[
+                {
+                    "puesto":"cajero",
+                    "asignadoA": "Juan Lopez"
+                },
+                {
+                    "puesto":"supervisora",
+                    "asignadoA": "Maria Lopez"
+                }
+            ]
+        },
+        {
+            "coordenadas":{
+                "latitud": -34.5973916,
+                "longitud": -58.3942779
+            },
+            "nombre": "Sucursal Santa Fe y Callao",
+            "direccion": "Av. Santa Fe 1780",
+            "empleados":[
+                {
+                    "puesto": "cajera",
+                    "asignadoA": "juana perez"
+                },
+                {
+                    "puesto": "supervisor",
+                    "asignadoA": "mario martinez"
+                },
+                {
+                    "puesto": "limpieza",
+                    "asignadoA": ""
+                }
+            ]
+        },
+        {
+            "coordenadas":{
+                "latitud": -1000.6280805,
+                "longitud": -1500.368849
+            },
+            "nombre": "Sucursal Apache",
+            "direccion": "Fuerte Apache",
+            "empleados":[
+                {
+                    "puesto":"cajero",
+                    "asignadoA": "Chaman"
+                },
+                {
+                    "puesto":"supervisora",
+                    "asignadoA": "Jebus"
+                }
+            ]
+        },
+        {
+            "coordenadas":{
+                "latitud": -30.6280805,
+                "longitud": -50.368849
+            },
+            "nombre": "Sucursal Parque",
+            "direccion": "Av. Martincito",
+            "empleados":[
+                {
+                    "puesto":"cajero",
+                    "asignadoA": "Juan Perez"
+                },
+                {
+                    "puesto":"supervisor",
+                    "asignadoA":""
+                }
+            ]
+        },
+        {
+            "coordenadas":{
+                "latitud": -4.6280805,
+                "longitud": -5.368849
+            },
+            "nombre": "Sucursal Altaguampa",
+            "direccion": "Av. Garcia Lorca",
+            "empleados":[
+                {
+                    "puesto":"cajero",
+                    "asignadoA": ""
+                },
+                {
+                    "puesto":"supervisora",
+                    "asignadoA": "Maria Maria"
+                }
+            ]
+        },
+        {
+            "coordenadas":{
+                "latitud": -0.6280805,
+                "longitud": -808.368849
+            },
+            "nombre": "Sucursal Pablo Lescano",
+            "direccion": "Av. Brasil 1600",
+            "empleados":[
+                {
+                    "puesto":"cajero",
+                    "asignadoA": "Rojelio Rojas"
+                },
+                {
+                    "puesto":"supervisora",
+                    "asignadoA": ""
+                }
+            ]
+        }
+    ]
+}
